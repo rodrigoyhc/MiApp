@@ -7,21 +7,28 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -44,30 +51,59 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Formulario(){
+fun Formulario() {
+    val listaBotones = listOf(
+        Estructura("Rojo", Color.Red),
+        Estructura("Verde", Color.Green),
+        Estructura("Amarillo", Color.Yellow),
+        Estructura("Azul", Color.Blue),
+        Estructura("Cyan", Color.Cyan),
+        Estructura("Dark Grey", Color.DarkGray),
+        Estructura("Rojo", Color.Red),
+        Estructura("Verde", Color.Green),
+        Estructura("Amarillo", Color.Yellow),
+        Estructura("Azul", Color.Blue),
+        Estructura("Cyan", Color.Cyan),
+        Estructura("Dark Grey", Color.DarkGray)
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
-    ){
-        Texto("Hola")
-        Spacer(modifier = Modifier.padding(10.dp))
-        Texto("Jetpack")
-        Spacer(modifier = Modifier.padding(10.dp))
-        Texto("Compose")
+            .wrapContentSize(Alignment.Center),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            "Bienvenido",
+            color = Color.Red,
+            fontWeight = FontWeight.Bold,
+            fontSize = 40.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .background(Color.Black)
+                .padding(horizontal = 20.dp)
+                .fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Text("Jetpack")
+        Spacer(modifier = Modifier.height(10.dp))
+        Text("Compose")
+        LazyRow(  contentPadding = PaddingValues(8.dp)){
+            items(listaBotones){estructura->
+                Botones(estructura)
+            }
+        }
     }
 }
 
 @Composable
-fun Texto(texto: String){
-    Text(
-        text = texto,
-        fontSize = 40.sp,
-        fontWeight = FontWeight.Bold,
-        color = Color.Red,
-        textAlign = TextAlign.Center,
+fun Botones(estructura:Estructura){
+    Button(
+        onClick = {},
+        shape= CircleShape,
         modifier = Modifier
-            .background(Color.Black)
-            .fillMaxWidth()
-    )
+            .size(80.dp),
+        colors = ButtonDefaults.buttonColors(estructura.color)
+    ){
+        Text(text=estructura.nombre)
+    }
 }
