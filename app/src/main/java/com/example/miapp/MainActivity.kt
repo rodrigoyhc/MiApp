@@ -101,7 +101,8 @@ fun Botones(estructura:Estructura){
         onClick = {},
         shape= CircleShape,
         modifier = Modifier
-            .size(80.dp),
+            .size(80.dp)
+            .padding(5.dp),
         colors = ButtonDefaults.buttonColors(estructura.color)
     ){
         Text(text=estructura.nombre)
