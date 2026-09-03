@@ -1,11 +1,13 @@
 package com.example.miapp
 
+import android.R
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.items
@@ -50,61 +52,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Preview(showBackground = true)
 @Composable
-fun Formulario() {
-    val listaBotones = listOf(
-        Estructura("Rojo", Color.Red),
-        Estructura("Verde", Color.Green),
-        Estructura("Amarillo", Color.Yellow),
-        Estructura("Azul", Color.Blue),
-        Estructura("Cyan", Color.Cyan),
-        Estructura("Dark Grey", Color.DarkGray),
-        Estructura("Rojo", Color.Red),
-        Estructura("Verde", Color.Green),
-        Estructura("Amarillo", Color.Yellow),
-        Estructura("Azul", Color.Blue),
-        Estructura("Cyan", Color.Cyan),
-        Estructura("Dark Grey", Color.DarkGray)
-    )
-    Column(
+fun Formulario(){
+    Box(
         modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize(Alignment.Center),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            "Bienvenido",
-            color = Color.Red,
-            fontWeight = FontWeight.Bold,
-            fontSize = 40.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .background(Color.Black)
-                .padding(horizontal = 20.dp)
-                .fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        Text("Jetpack")
-        Spacer(modifier = Modifier.height(10.dp))
-        Text("Compose")
-        LazyRow(  contentPadding = PaddingValues(8.dp)){
-            items(listaBotones){estructura->
-                Botones(estructura)
-            }
-        }
-    }
-}
-
-@Composable
-fun Botones(estructura:Estructura){
-    Button(
-        onClick = {},
-        shape= CircleShape,
-        modifier = Modifier
-            .size(80.dp)
-            .padding(5.dp),
-        colors = ButtonDefaults.buttonColors(estructura.color)
+            .padding(125.dp)
+            .size(150.dp)
+            .background(color = Color.Yellow, shape = CircleShape)
     ){
-        Text(text=estructura.nombre)
+        Text("Hi", fontSize = 70.sp, color = Color.White)
     }
 }
