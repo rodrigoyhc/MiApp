@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
@@ -29,6 +31,8 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -47,7 +51,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MiAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Formulario()
+                    Screen()
                 }
             }
         }
@@ -55,33 +59,117 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Formulario() {
+fun Screen() {
+    var contador by remember { mutableStateOf(0) }
+    var contador2 by remember { mutableStateOf(0) }
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .wrapContentSize(Alignment.Center),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Box(
-            modifier = Modifier
-                .padding(5.dp)
-                .size(180.dp)
-                .background(color = Color.Blue, shape = CircleShape)
-                .wrapContentSize(Alignment.Center)
-        ){
-            Text("0", fontSize = 80.sp, color = Color.White)
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .wrapContentSize(Alignment.Center),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Box(
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .size(150.dp)
+                        .background(color = Color.Blue, shape = CircleShape)
+                        .wrapContentSize(Alignment.Center)
+                ) {
+                    Text(text = "$contador", fontSize = 80.sp, color = Color.White)
+                }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Button(
+                    onClick = { contador++ },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(70.dp),
+                    colors = ButtonDefaults.buttonColors(contentColor = Color.Gray)
+                ) {
+                    Text("Sumar", fontSize = 30.sp, color = Color.White)
+                }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Button(
+                    onClick = { if (contador > 0){
+                        contador--
+                    } },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(70.dp),
+                    colors = ButtonDefaults.buttonColors(contentColor = Color.Gray)
+                ) {
+                    Text("Restar", fontSize = 30.sp, color = Color.White)
+                }
+            }
+
+            Spacer(modifier = Modifier.width(5.dp))
+
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .wrapContentSize(Alignment.Center),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Box(
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .size(150.dp)
+                        .background(color = Color.Blue, shape = CircleShape)
+                        .wrapContentSize(Alignment.Center)
+                ) {
+                    Text(text = "$contador2", fontSize = 80.sp, color = Color.White)
+                }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Button(
+                    onClick = { contador2++ },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(70.dp),
+                    colors = ButtonDefaults.buttonColors(contentColor = Color.Gray)
+                ) {
+                    Text("Sumar", fontSize = 30.sp, color = Color.White)
+                }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Button(
+                    onClick = { if (contador2 > 0){
+                                  contador2--
+                              }},
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(70.dp),
+                    colors = ButtonDefaults.buttonColors(contentColor = Color.Gray)
+                ) {
+                    Text("Restar", fontSize = 30.sp, color = Color.White)
+                }
+            }
         }
-
-        Spacer(modifier = Modifier.height(20.dp))
-
+        Spacer(modifier = Modifier.height(40.dp))
         Button(
-            onClick = {},
+            onClick = { contador = 0
+                        contador2 = 0 },
             modifier = Modifier
-                .width(250.dp)
+                .fillMaxWidth(0.8f)
                 .height(70.dp),
-                colors = ButtonDefaults.buttonColors(contentColor = Color.Gray)
-        ){
-            Text("Sumar", fontSize = 30.sp,color = Color.White)
+            colors = ButtonDefaults.buttonColors(contentColor = Color.Gray)
+        ) {
+            Text("Reiniciar", fontSize = 30.sp, color = Color.White)
         }
     }
 }
