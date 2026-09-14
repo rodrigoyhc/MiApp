@@ -12,6 +12,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.Icon
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,6 +25,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,7 +47,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MiAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Formulario()
+                    Screen()
                 }
             }
         }
@@ -51,59 +55,22 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Formulario() {
-    val listaBotones = listOf(
-        Estructura("Rojo", Color.Red),
-        Estructura("Verde", Color.Green),
-        Estructura("Amarillo", Color.Yellow),
-        Estructura("Azul", Color.Blue),
-        Estructura("Cyan", Color.Cyan),
-        Estructura("Dark Grey", Color.DarkGray),
-        Estructura("Rojo", Color.Red),
-        Estructura("Verde", Color.Green),
-        Estructura("Amarillo", Color.Yellow),
-        Estructura("Azul", Color.Blue),
-        Estructura("Cyan", Color.Cyan),
-        Estructura("Dark Grey", Color.DarkGray)
-    )
+fun Screen(){
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize(Alignment.Center),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Text(
-            "Bienvenido",
-            color = Color.Red,
-            fontWeight = FontWeight.Bold,
-            fontSize = 40.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .background(Color.Black)
-                .padding(horizontal = 20.dp)
-                .fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        Text("Jetpack")
-        Spacer(modifier = Modifier.height(10.dp))
-        Text("Compose")
-        LazyRow(  contentPadding = PaddingValues(8.dp)){
-            items(listaBotones){estructura->
-                Botones(estructura)
-            }
+        Button(onClick = {}) {
+            Icon(
+                imageVector = Icons.Filled.Favorite,
+                contentDescription = "Prueba",
+                tint = Color.Red,
+                modifier = Modifier.size(50.dp)
+            )
+            Spacer(modifier = Modifier.height(40.dp))
+            Text("Favorito", fontSize = 30.sp)
         }
-    }
-}
-
-@Composable
-fun Botones(estructura:Estructura){
-    Button(
-        onClick = {},
-        shape= CircleShape,
-        modifier = Modifier
-            .size(80.dp),
-        colors = ButtonDefaults.buttonColors(estructura.color)
-    ){
-        Text(text=estructura.nombre)
     }
 }
