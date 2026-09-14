@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.layout.Row
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,8 +28,12 @@ import androidx.compose.material3.Text
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Remove
+import androidx.compose.material.icons.filled.Replay
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -97,6 +103,13 @@ fun Screen() {
                         .height(70.dp),
                     colors = ButtonDefaults.buttonColors(contentColor = Color.Gray)
                 ) {
+                    Icon(
+                        imageVector = Icons.Filled.Add,
+                        contentDescription = "Mas",
+                        tint = Color.White,
+                        modifier = Modifier.size(50.dp)
+                    )
+                    Spacer(modifier = Modifier.height(40.dp))
                     Text("Sumar", fontSize = 30.sp, color = Color.White)
                 }
 
@@ -111,6 +124,13 @@ fun Screen() {
                         .height(70.dp),
                     colors = ButtonDefaults.buttonColors(contentColor = Color.Gray)
                 ) {
+                    Icon(
+                        imageVector = Icons.Filled.Remove,
+                        contentDescription = "Mas",
+                        tint = Color.White,
+                        modifier = Modifier.size(50.dp)
+                    )
+                    Spacer(modifier = Modifier.height(40.dp))
                     Text("Restar", fontSize = 30.sp, color = Color.White)
                 }
             }
@@ -142,6 +162,13 @@ fun Screen() {
                         .height(70.dp),
                     colors = ButtonDefaults.buttonColors(contentColor = Color.Gray)
                 ) {
+                    Icon(
+                        imageVector = Icons.Filled.Add,
+                        contentDescription = "Mas",
+                        tint = Color.White,
+                        modifier = Modifier.size(50.dp)
+                    )
+                    Spacer(modifier = Modifier.height(40.dp))
                     Text("Sumar", fontSize = 30.sp, color = Color.White)
                 }
 
@@ -156,6 +183,13 @@ fun Screen() {
                         .height(70.dp),
                     colors = ButtonDefaults.buttonColors(contentColor = Color.Gray)
                 ) {
+                    Icon(
+                        imageVector = Icons.Filled.Remove,
+                        contentDescription = "Mas",
+                        tint = Color.White,
+                        modifier = Modifier.size(50.dp)
+                    )
+                    Spacer(modifier = Modifier.height(40.dp))
                     Text("Restar", fontSize = 30.sp, color = Color.White)
                 }
             }
@@ -169,6 +203,13 @@ fun Screen() {
                 .height(70.dp),
             colors = ButtonDefaults.buttonColors(contentColor = Color.Gray)
         ) {
+            Icon(
+                imageVector = Icons.Filled.Replay,
+                contentDescription = "Mas",
+                tint = Color.White,
+                modifier = Modifier.size(50.dp)
+            )
+            Spacer(modifier = Modifier.height(40.dp))
             Text("Reiniciar", fontSize = 30.sp, color = Color.White)
         }
     }
