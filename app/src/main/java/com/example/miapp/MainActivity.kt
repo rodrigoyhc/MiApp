@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -34,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -87,5 +89,12 @@ fun Screen(){
             Spacer(modifier = Modifier.height(40.dp))
             Text("Pingü", fontSize = 30.sp)
         }
+        Spacer(modifier = Modifier.height(40.dp))
+        Image(
+            painter = painterResource(R.drawable.denver_broncos_1),
+            contentDescription = "",
+            contentScale = ContentScale.Fit,
+            modifier = Modifier.size(250.dp)
+        )
     }
 }
