@@ -1,5 +1,6 @@
 package com.example.miapp
 
+import android.R.attr.contentDescription
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -42,6 +43,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.example.miapp.ui.theme.MiAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -94,7 +96,14 @@ fun Screen(){
             painter = painterResource(R.drawable.denver_broncos_1),
             contentDescription = "",
             contentScale = ContentScale.Fit,
-            modifier = Modifier.size(250.dp)
+            modifier = Modifier.size(230.dp)
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        AsyncImage(
+            model = "https://i.pinimg.com/736x/f8/01/71/f801716d5be112d2a9b48da3eb663c01.jpg",
+            contentDescription = "Imagen Tom:",
+            modifier = Modifier.size(230.dp),
+            contentScale = ContentScale.Crop
         )
     }
 }
