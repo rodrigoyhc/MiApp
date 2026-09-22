@@ -18,7 +18,7 @@ fun Navigate(){
         composable("Home"){
             Home(navController)
         }
-        composable("Deatil"){
+        composable("Detail"){
             Detail(navController)
         }
     }
