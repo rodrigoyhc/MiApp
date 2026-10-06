@@ -9,6 +9,6 @@ class ContadorViewMode: ViewModel(){
     val contador: State<Int> = _contador
 
     fun add(){
-        _contador.value = _contador + 1;
+        _contador.value = _contador.value + 1
     }
 }
