@@ -3,6 +3,7 @@ package com.example.miapp.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
@@ -20,7 +21,21 @@ fun TwoCards(title1: String, number1: Double, title2: String, number2: Double){
     Row(modifier = Modifier
         .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly) {
-        //MainCard()
+        MainCard(
+            title1,
+            number1,
+            modifier = Modifier
+                .padding(30.dp)
+                .weight(1f)
+        )
+        SpaceW()
+        MainCard(
+            title2,
+            number2,
+            modifier = Modifier
+                .padding(30.dp)
+                .weight(1f)
+        )
     }
 }
 
