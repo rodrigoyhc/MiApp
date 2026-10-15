@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,16 +19,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,11 +45,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.miapp.mvv.ItemViewModel
+import com.example.miapp.mvv.MainViewModel
 import com.example.miapp.ui.theme.MiAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val itemList: ItemViewModel by viewModels()
         enableEdgeToEdge()
         setContent {
             MiAppTheme {
@@ -54,7 +61,7 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ContentView()
+                    ItemsView(itemList)
                 }
             }
         }
@@ -62,25 +69,52 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ContentView(){
+fun ContentView(viewModel: MainViewModel){
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    ){
         BotonColor()
-        Spacer(modifier = Modifier.width(10.dp))
-        Button(onClick = { Thread.sleep(5000)}) {
-            Text("Llamar Api")
+        Spacer(modifier= Modifier.width(10.dp))
+        if(viewModel.cargando){
+            CircularProgressIndicator()
+        }
+        else
+        {
+            Text(viewModel.resultState)
+        }
+
+        Button(onClick = { viewModel.fetchData()}){
+            Text("Llamar a API")
         }
     }
+
 }
 
 @Composable
 fun BotonColor(){
-    var color by remember { mutableStateOf(false) }
-    Button(onClick = {color =! color}, colors = ButtonDefaults.buttonColors(
-        containerColor = if(color) Color.Blue else Color.Red
-    )) {
-        Text("Cambiar color")
+    var color by remember {mutableStateOf(false)}
+    Button(onClick = {color=!color},
+        colors = ButtonDefaults.buttonColors(
+            containerColor = if(color) Color.Blue else Color.Red
+        )){
+        Text("Cambiar Color")
+    }
+}
+
+@Composable
+fun ItemsView(viewModel: ItemViewModel) {
+    val itemList = viewModel.itemList
+    val lista by viewModel.lista.collectAsState()
+    Column() {
+        if (viewModel.cargando) {
+            CircularProgressIndicator()
+        } else {
+            LazyColumn() {
+                items(itemList) { item ->
+                    Text(text = item.name)
+                }
+            }
+        }
     }
 }
