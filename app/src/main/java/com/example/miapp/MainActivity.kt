@@ -43,67 +43,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             MiAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Formulario()
+
                 }
             }
         }
     }
 }
 
-@Composable
-fun Formulario() {
-    val listaBotones = listOf(
-        Estructura("Rojo", Color.Red),
-        Estructura("Verde", Color.Green),
-        Estructura("Amarillo", Color.Yellow),
-        Estructura("Azul", Color.Blue),
-        Estructura("Cyan", Color.Cyan),
-        Estructura("Dark Grey", Color.DarkGray),
-        Estructura("Rojo", Color.Red),
-        Estructura("Verde", Color.Green),
-        Estructura("Amarillo", Color.Yellow),
-        Estructura("Azul", Color.Blue),
-        Estructura("Cyan", Color.Cyan),
-        Estructura("Dark Grey", Color.DarkGray)
-    )
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize(Alignment.Center),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            "Bienvenido",
-            color = Color.Red,
-            fontWeight = FontWeight.Bold,
-            fontSize = 40.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .background(Color.Black)
-                .padding(horizontal = 20.dp)
-                .fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        Text("Jetpack")
-        Spacer(modifier = Modifier.height(10.dp))
-        Text("Compose")
-        LazyRow(  contentPadding = PaddingValues(8.dp)){
-            items(listaBotones){estructura->
-                Botones(estructura)
-            }
-        }
-    }
-}
-
-@Composable
-fun Botones(estructura:Estructura){
-    Button(
-        onClick = {},
-        shape= CircleShape,
-        modifier = Modifier
-            .size(80.dp),
-        colors = ButtonDefaults.buttonColors(estructura.color)
-    ){
-        Text(text=estructura.nombre)
-    }
-}
