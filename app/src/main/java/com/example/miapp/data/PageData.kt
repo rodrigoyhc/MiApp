@@ -1,15 +1,7 @@
 package com.example.miapp.data
 
-<<<<<<< HEAD
-class PageData {
-    val image: Int,
-    val titulo: String,
-    val descripcion: String
-}
-=======
-class PageData (
-    val image: Int,
-    val titulo: String,
-    val descripcion: String
+data class PageData (
+    val image:Int,
+    val title: String,
+    val description: String
 )
->>>>>>> 4ff3079 (OnBoarding 01)

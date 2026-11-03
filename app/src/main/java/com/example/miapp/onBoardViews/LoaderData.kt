@@ -10,13 +10,11 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
 fun LoaderData(modifier: Modifier, image:Int){
-    val composition by
-    rememberLottieComposition(LottieCompositionSpec.RawRes(image))
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(image))
 
     LottieAnimation(
-        composition = composition,
+        composition=composition,
         iterations = LottieConstants.IterateForever,
         modifier = modifier
     )
-
 }

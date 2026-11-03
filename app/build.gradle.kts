@@ -51,7 +51,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
-
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
     //--On Boarding
     implementation("com.google.accompanist:accompanist-pager:0.15.0")
 
