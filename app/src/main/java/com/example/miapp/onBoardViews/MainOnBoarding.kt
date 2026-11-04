@@ -2,7 +2,6 @@ package com.example.miapp.onBoardViews
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -13,30 +12,33 @@ import com.google.accompanist.pager.rememberPagerState
 
 @OptIn  (ExperimentalPagerApi::class)
 @Composable
-fun MainOnBoarding(){
-    val items= ArrayList<PageData>()
+fun MainOnBoarding() {
+    val items = ArrayList<PageData>()
 
     items.add(
         PageData(
-            R.raw.welcome,
-            title="Entrada",
-            description = "Descripcion de la aplicacion en el momento de la entrada"
+            R.drawable.warriors,
+            title = "Golden State Warriors",
+            description = "Descripcion de la aplicacion en el momento de la entrada",
+            R.drawable.logow
         )
     )
 
     items.add(
         PageData(
-            R.raw.carwash,
-            title="Medio",
-            description = "Descripcion de la aplicacion en el momento medio de la aplicacion"
+            R.drawable.canasta,
+            title = "Medio",
+            description = "Descripcion de la aplicacion en el momento medio de la aplicacion",
+
         )
     )
 
     items.add(
         PageData(
-            R.raw.redcar,
-            title="Final",
-            description = "Descripcion de la aplicacion en el momento de la entrada"
+            R.drawable.heat,
+            title = "Miami Heat",
+            description = "Descripcion de la aplicacion en el momento de la entrada",
+            R.drawable.logoh
         )
     )
 
@@ -49,7 +51,7 @@ fun MainOnBoarding(){
     )
 
     OnBoardingPager(
-        item =items, pagerState = pagerState, modifier = Modifier
+        item = items, pagerState = pagerState, modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     )

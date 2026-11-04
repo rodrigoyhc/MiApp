@@ -44,6 +44,11 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // Iconos administrados por el BOM de Compose (Sin especificar versión manual)
+    implementation("androidx.compose.material:material-icons-core")
+    implementation("androidx.compose.material:material-icons-extended")
+
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
@@ -51,16 +56,12 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
-    //--On Boarding
-    implementation("com.google.accompanist:accompanist-pager:0.15.0")
 
-    //--Lottie Files
+    //-- OnBoarding & Lottie
+    implementation("com.google.accompanist:accompanist-pager:0.15.0")
     implementation("com.airbnb.android:lottie-compose:5.2.0")
 
-    //--Navigation
+    //-- Navigation & DataStore
     implementation("androidx.navigation:navigation-compose:2.5.3")
-
-    //--DataStore
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 }
