@@ -27,6 +27,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,8 +39,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.miapp.data.DataStoreM
 import com.example.miapp.onBoardViews.MainOnBoarding
 import com.example.miapp.ui.theme.MiAppTheme
+import com.example.miapp.views.HomeView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +57,27 @@ class MainActivity : ComponentActivity() {
                     modifier= Modifier.fillMaxSize(),
                     color= MaterialTheme.colorScheme.background
                 ){
-                    MainOnBoarding()
+                    val navController = rememberNavController()
+                    val dataStore = remember { DataStoreM(applicationContext) }
+
+                    // 1. Damos un valor inicial por defecto (false) para que no sea null
+                    val isBoardingCompleted by dataStore.isBoardingCompleted.collectAsState(initial = false)
+
+                    // 2. Determinamos la pantalla inicial
+                    val startDestination = if (isBoardingCompleted) "home" else "onboarding"
+
+                    // 3. Renderizamos siempre el NavHost sin condicionales 'if' externos
+                    NavHost(
+                        navController = navController,
+                        startDestination = startDestination
+                    ) {
+                        composable("onboarding") {
+                            MainOnBoarding(navController = navController)
+                        }
+                        composable("home") {
+                            HomeView()
+                        }
+                    }
                 }
             }
         }

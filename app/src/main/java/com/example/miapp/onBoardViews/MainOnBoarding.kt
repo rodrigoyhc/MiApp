@@ -6,20 +6,21 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavController
 import com.example.miapp.R
 import com.example.miapp.data.PageData
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
 
-@OptIn  (ExperimentalPagerApi::class)
+@OptIn(ExperimentalPagerApi::class)
 @Composable
-fun MainOnBoarding(){
-    val items= ArrayList<PageData>()
+fun MainOnBoarding(navController: NavController) { // 1. Recibimos el NavController
+    val items = ArrayList<PageData>()
 
     items.add(
         PageData(
             R.raw.welcome,
-            title="Entrada",
+            title = "Entrada",
             description = "Descripcion de la aplicacion en el momento de la entrada"
         )
     )
@@ -27,7 +28,7 @@ fun MainOnBoarding(){
     items.add(
         PageData(
             R.raw.carwash,
-            title="Medio",
+            title = "Medio",
             description = "Descripcion de la aplicacion en el momento medio de la aplicacion"
         )
     )
@@ -35,7 +36,7 @@ fun MainOnBoarding(){
     items.add(
         PageData(
             R.raw.redcar,
-            title="Final",
+            title = "Final",
             description = "Descripcion de la aplicacion en el momento de la entrada"
         )
     )
@@ -45,13 +46,20 @@ fun MainOnBoarding(){
         initialOffscreenLimit = 2,
         infiniteLoop = false,
         initialPage = 0
-
     )
 
     OnBoardingPager(
-        item =items, pagerState = pagerState, modifier = Modifier
+        item = items,
+        pagerState = pagerState,
+        modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(Color.White),
+        onClick = {
+            // 2. Definimos la navegación hacia tu HomeView al pulsar "Entrar"
+            navController.navigate("home") {
+                // Limpia la pila para que el usuario no vuelva al Onboarding al dar atrás
+                popUpTo("onboarding") { inclusive = true }
+            }
+        }
     )
-
 }

@@ -14,11 +14,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.miapp.data.DataStoreM
-import com.example.miapp.views.HomeView
 import kotlinx.coroutines.launch
 
 @Composable
-fun ButtonFinish(currentPage: Int, onClick: () -> Unit, saveBoardingState: T.(Boolean) -> Unit) { // Agregamos la acción de navegación como parámetro
+fun ButtonFinish(currentPage: Int, onClick: () -> Unit) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val dataStore = remember { DataStoreM(context) }
@@ -34,7 +33,7 @@ fun ButtonFinish(currentPage: Int, onClick: () -> Unit, saveBoardingState: T.(Bo
                 onClick = {
                     scope.launch {
                         dataStore.saveBoardingState(true) // 1. Guarda en DataStore
-                        HomeView()                        // 2. Navega a HomeView
+                        onClick()                         // 2. Ejecuta la navegación
                     }
                 }
             ) {

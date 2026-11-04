@@ -22,11 +22,11 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 fun OnBoardingPager(
     item: List<PageData>,
     pagerState: com.google.accompanist.pager.PagerState,
-    modifier: Modifier = Modifier
-)
-{
-    Box(modifier= modifier){
-        Column(horizontalAlignment = Alignment.CenterHorizontally){
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit // 1. Agregamos el parámetro onClick aquí
+) {
+    Box(modifier = modifier) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             com.google.accompanist.pager.HorizontalPager(state = pagerState) { page ->
                 Column(
                     modifier = Modifier
@@ -58,14 +58,15 @@ fun OnBoardingPager(
                         fontSize = 14.sp
                     )
                 }
-
             }
-            PagerIndicator(item.size,pagerState.currentPage)
+            PagerIndicator(item.size, pagerState.currentPage)
         }
-        Box(modifier= Modifier.align(Alignment.BottomCenter)){
-            ButtonFinish(pagerState.currentPage)
+        Box(modifier = Modifier.align(Alignment.BottomCenter)) {
+            // 2. Le pasamos el onClick a ButtonFinish
+            ButtonFinish(
+                currentPage = pagerState.currentPage,
+                onClick = onClick
+            )
         }
     }
-
 }
-
