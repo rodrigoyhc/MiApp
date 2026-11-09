@@ -139,7 +139,7 @@ fun Contador(currentPage: Int) {
         }
     }
 
-    if (currentPage == 2) {
+    if (currentPage == 1) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()

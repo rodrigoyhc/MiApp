@@ -47,19 +47,17 @@ fun OnBoardingPager(
                         .fillMaxSize()
                         .padding(16.dp)
                 ) {
-                    // Logo en la esquina superior izquierda con margen para la hora/status bar
                     item[page].imageL?.let { logoRes ->
                         Image(
                             painter = painterResource(id = logoRes),
                             contentDescription = "Logo del equipo",
                             modifier = Modifier
-                                .padding(top = 24.dp) // Espacio para bajar el logo de la barra superior
+                                .padding(top = 24.dp)
                                 .size(60.dp)
                                 .align(Alignment.TopStart)
                         )
                     }
 
-                    // Contenido principal completamente centrado en pantalla
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()

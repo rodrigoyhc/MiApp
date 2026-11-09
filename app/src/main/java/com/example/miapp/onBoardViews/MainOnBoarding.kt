@@ -19,25 +19,25 @@ fun MainOnBoarding() {
         PageData(
             R.drawable.warriors,
             title = "Golden State Warriors",
-            description = "Descripcion de la aplicacion en el momento de la entrada",
+            description = "4-3",
             R.drawable.logow
         )
     )
 
-    items.add(
-        PageData(
-            R.drawable.canasta,
-            title = "Medio",
-            description = "Descripcion de la aplicacion en el momento medio de la aplicacion",
-
-        )
-    )
+//    items.add(
+//        PageData(
+//            R.drawable.canasta,
+//            title = "",
+//            description = "",
+//
+//        )
+//    )
 
     items.add(
         PageData(
             R.drawable.heat,
             title = "Miami Heat",
-            description = "Descripcion de la aplicacion en el momento de la entrada",
+            description = "2-5",
             R.drawable.logoh
         )
     )
